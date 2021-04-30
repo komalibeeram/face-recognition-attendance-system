@@ -7,8 +7,8 @@ class MyAccountManager(BaseUserManager):
     def create_user(self, username, enroll_id, password=None):
         if not username:
             raise ValueError("Users must have an Username")
-        if not enroll_id:
-            raise ValueError("Users must have an Enroll Identification Number")
+        # if not enroll_id:
+            # raise ValueError("Users must have an Enroll Identification Number")
         
         user = self.model(
             username=username,
@@ -34,7 +34,7 @@ class MyAccountManager(BaseUserManager):
 
 class Account(AbstractBaseUser):
     username = models.CharField(max_length=30, unique=True)
-    enroll_id = models.IntegerField(unique=True)
+    enroll_id = models.IntegerField(unique=True, null=True)
     date_joined = models.DateTimeField(verbose_name='Date Joined', auto_now_add=True)
     last_login = models.DateTimeField(verbose_name='Last Login', auto_now=True)
     is_student = models.BooleanField(default=True)

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <title>attendance</title>
+</head>
+<body>
+    <h2>staff page</h2>
+    {% if user.is_authenticated and user.is_student == False %}
+            <ul>
+                <li><a href="#header">Home</a></li>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+            </ul>
+    {% else %}
+        <ul>
+            <li class="active"><a href="#header">Home</a></li>
+            <li><a href="{% url 'login' %}">Login</a></li>
+        </ul>
+    {% endif %}
+</body>
